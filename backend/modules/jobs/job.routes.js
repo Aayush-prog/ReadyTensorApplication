@@ -1,0 +1,15 @@
+const express = require("express");
+const jobRouter = express.Router();
+const getJobs = require("./controller/getJobs");
+const getJobById = require("./controller/getJobById");
+const hire = require("./controller/hire");
+const completeJob = require("./controller/completedJob");
+const matchDevToJob = require("./controller/matchDevToJob");
+const auth = require("../../middleware/auth");
+jobRouter.get("/", getJobs);
+jobRouter.get("/getJobById/:id", getJobById);
+jobRouter.use(auth);
+jobRouter.get("/matchJob", matchDevToJob);
+jobRouter.post("/hire/:applicationId", hire);
+jobRouter.post("/completeJob/:jobId", completeJob);
+module.exports = jobRouter;

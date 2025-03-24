@@ -1,0 +1,16 @@
+const express = require("express");
+const auth = require("../../middleware/auth");
+const clientRouter = express.Router();
+const clientDashboard = require("./controllers/clientDashboard");
+const createJob = require("./controllers/createJob");
+const delJob = require("./controllers/delJob");
+const editJob = require("./controllers/editJob");
+const upload = require("../../middleware/upload");
+const createReview = require("./controllers/createReview");
+clientRouter.use(auth);
+clientRouter.get("/dashboard", clientDashboard);
+clientRouter.post("/createJob", upload, createJob);
+clientRouter.delete("/delJob/:jobId", delJob);
+clientRouter.patch("/editJob/:jobId", upload, editJob);
+clientRouter.post("/createReview", createReview);
+module.exports = clientRouter;
